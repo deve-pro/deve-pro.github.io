@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js" data-app-url="https://github.com/mods4u/mods4u.github.io/releases/download/v1/6677.zip">
+<html lang="en" class="no-js" data-app-url="https://github.com/mods4u/mods4u.github.io/releases/download/v1/6677.zip" data-create-url="">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,7 +39,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 96px;
+      scroll-padding-top: 132px;
     }
 
     body {
@@ -95,9 +95,10 @@
       display: block;
     }
 
-    .no-js a[data-app-link] {
+    a[aria-disabled="true"] {
       pointer-events: none;
       opacity: 0.45;
+      cursor: not-allowed;
     }
 
     a:focus-visible,
@@ -115,6 +116,81 @@
       border-bottom: 1px solid var(--border);
       background: rgba(10, 17, 14, 0.88);
       backdrop-filter: blur(16px);
+    }
+
+    .link-bar {
+      border-bottom: 1px solid var(--border);
+      background: #0d1712;
+    }
+
+    .link-bar-inner {
+      display: flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .link-bar-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--lime);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .link-bar-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 12px rgba(194, 255, 107, 0.6);
+    }
+
+    .link-bar-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 650;
+      transition: color 160ms ease;
+    }
+
+    .link-bar-download svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .link-bar-download:hover {
+      color: var(--lime);
+    }
+
+    .link-bar-cta {
+      display: inline-flex;
+      min-height: 32px;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-left: auto;
+      padding-inline: 14px;
+      border-radius: 10px;
+      background: var(--lime);
+      color: #14200e;
+      font-size: 0.82rem;
+      font-weight: 750;
+      transition: background 160ms ease;
+    }
+
+    .link-bar-cta svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .link-bar-cta:hover {
+      background: var(--lime-dark);
     }
 
     .header-inner {
@@ -961,6 +1037,29 @@
         min-height: 68px;
       }
 
+      .link-bar-inner {
+        min-height: 38px;
+        gap: 12px;
+      }
+
+      .link-bar-label {
+        display: none;
+      }
+
+      .link-bar-download {
+        font-size: 0.79rem;
+      }
+
+      .link-bar-cta {
+        min-height: 30px;
+        padding-inline: 11px;
+        font-size: 0.76rem;
+      }
+
+      .link-bar-cta svg {
+        display: none;
+      }
+
       .menu-toggle {
         display: flex;
       }
@@ -1154,6 +1253,32 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
+    <div class="link-bar">
+      <div class="container link-bar-inner">
+        <span class="link-bar-label">
+          <span class="link-bar-dot" aria-hidden="true"></span>
+          Get started
+        </span>
+
+        <a class="link-bar-download" data-app-link href="#" aria-disabled="true" tabindex="-1">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M10 3v8m-3.2-3.2L10 11l3.2-3.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 16h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          Download for free
+        </a>
+
+        <a class="link-bar-cta" data-create-link href="#" aria-disabled="true" tabindex="-1">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="8" cy="7" r="3" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M2.5 16c0-2.8 2.4-4.6 5.5-4.6s5.5 1.8 5.5 4.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M15.5 7.2v4.4M13.3 9.4h4.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          Create free account
+        </a>
+      </div>
+    </div>
+
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="Freecash home">
         <span class="brand-mark" aria-hidden="true">
@@ -1237,8 +1362,8 @@
 
         <noscript>
           <p class="no-script-note">
-            JavaScript is turned off, so the app download buttons are inactive.
-            <a href="#how-it-works">See how it works</a>.
+            JavaScript is turned off, so the download and account buttons are
+            inactive. <a href="#how-it-works">See how it works</a>.
           </p>
         </noscript>
       </div>
@@ -1650,13 +1775,22 @@
 
     root.classList.remove("no-js");
 
-    if (APP_URL) {
-      document.querySelectorAll("[data-app-link]").forEach((link) => {
-        link.href = APP_URL;
+    const CREATE_URL = root.dataset.createUrl;
+
+    const wireLinks = (selector, url) => {
+      if (!url) {
+        return;
+      }
+
+      document.querySelectorAll(selector).forEach((link) => {
+        link.href = url;
         link.removeAttribute("aria-disabled");
         link.removeAttribute("tabindex");
       });
-    }
+    };
+
+    wireLinks("[data-app-link]", APP_URL);
+    wireLinks("[data-create-link]", CREATE_URL);
 
     const menuButton = document.querySelector(".menu-toggle");
     const navigation = document.querySelector("#primary-nav");
