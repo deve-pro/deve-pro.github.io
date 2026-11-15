@@ -1,0 +1,1654 @@
+<!doctype html>
+<html lang="en" data-app-url="https://freecash.com/en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a110e">
+  <meta
+    name="description"
+    content="Explore surveys, mobile games, and partner offers with Freecash. Find available activities and review their terms before you start."
+  >
+  <meta property="og:title" content="Freecash — Make your spare moments count">
+  <meta
+    property="og:description"
+    content="Discover surveys, games, and offers in one place with Freecash."
+  >
+  <title>Freecash — Make your spare moments count</title>
+  <link rel="preload" href="./install.mp4" as="video" type="video/mp4">
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #0a110e;
+      --surface: #101a15;
+      --surface-raised: #14221a;
+      --text: #f3f7f3;
+      --muted: #a8b6ac;
+      --lime: #c2ff6b;
+      --lime-dark: #a9ed4f;
+      --border: rgba(226, 245, 229, 0.11);
+      --max-width: 1160px;
+      --radius: 22px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 96px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 16px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--lime);
+      color: #10170d;
+      font-weight: 700;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible,
+    video:focus-visible {
+      outline: 3px solid var(--lime);
+      outline-offset: 4px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10, 17, 14, 0.88);
+      backdrop-filter: blur(16px);
+    }
+
+    .header-inner {
+      position: relative;
+      display: flex;
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.055em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--lime);
+      color: #12200d;
+    }
+
+    .brand-mark svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links > a:not(.button) {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 550;
+      transition: color 160ms ease;
+    }
+
+    .nav-links > a:not(.button):hover {
+      color: var(--text);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      border-radius: 2px;
+      background: currentColor;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 21px;
+      border: 1px solid transparent;
+      border-radius: 14px;
+      font-size: 0.96rem;
+      font-weight: 750;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      background: var(--lime);
+      color: #14200e;
+      box-shadow: 0 8px 28px rgba(194, 255, 107, 0.12);
+    }
+
+    .button-primary:hover {
+      background: var(--lime-dark);
+    }
+
+    .button-small {
+      min-height: 43px;
+      padding-inline: 17px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+    }
+
+    .button-dark {
+      background: #142018;
+      color: #f6fbf5;
+    }
+
+    .button-dark:hover {
+      background: #1d2d22;
+    }
+
+    .button svg,
+    .text-link svg {
+      width: 17px;
+      height: 17px;
+      flex: 0 0 auto;
+    }
+
+    .install-section {
+      padding: 28px 0 8px;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(111, 160, 78, 0.16), transparent 42%);
+    }
+
+    .install-copy {
+      max-width: 720px;
+      margin: 0 auto 22px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 14px;
+      color: var(--lime);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 14px rgba(194, 255, 107, 0.65);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    .install-copy h1 {
+      margin-bottom: 12px;
+      font-size: clamp(2.1rem, 4.8vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.07em;
+    }
+
+    .install-copy p {
+      margin: 0 auto;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .video-frame {
+      width: min(100%, 920px);
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: #07100c;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .video-frame video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: min(72vh, 620px);
+      background: #000;
+      vertical-align: middle;
+    }
+
+    .install-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 54px 0 84px;
+      background:
+        radial-gradient(ellipse at 75% 35%, rgba(111, 160, 78, 0.14), transparent 35%),
+        radial-gradient(ellipse at 8% 16%, rgba(54, 104, 74, 0.11), transparent 32%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.92fr;
+      align-items: center;
+      gap: 58px;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+    }
+
+    h1.hero-title {
+      max-width: 670px;
+      margin-bottom: 22px;
+      font-size: clamp(3.25rem, 6.2vw, 5.7rem);
+      line-height: 0.99;
+      letter-spacing: -0.075em;
+    }
+
+    h1 em {
+      color: var(--lime);
+      font-style: normal;
+    }
+
+    .hero-description {
+      max-width: 540px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 650;
+    }
+
+    .text-link:hover {
+      color: var(--lime);
+    }
+
+    .hero-note {
+      max-width: 490px;
+      margin: 20px 0 0;
+      color: #86968b;
+      font-size: 0.82rem;
+    }
+
+    .hero-art {
+      position: relative;
+      display: grid;
+      min-height: 550px;
+      place-items: center;
+    }
+
+    .art-glow {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: rgba(184, 255, 106, 0.1);
+      filter: blur(58px);
+    }
+
+    .phone-frame {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 344px);
+      padding: 9px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 42px;
+      background: #18211c;
+      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.5);
+      transform: rotate(2deg);
+    }
+
+    .phone-screen {
+      min-height: 495px;
+      overflow: hidden;
+      padding: 17px;
+      border-radius: 33px;
+      background: #f4f7f1;
+      color: #17231b;
+    }
+
+    .phone-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 4px 19px;
+      color: #25352a;
+      font-size: 0.68rem;
+      font-weight: 750;
+    }
+
+    .mock-app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 19px;
+    }
+
+    .mock-app-name {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.94rem;
+      font-weight: 850;
+      letter-spacing: -0.04em;
+    }
+
+    .mock-app-symbol {
+      display: grid;
+      width: 25px;
+      height: 25px;
+      place-items: center;
+      border-radius: 8px;
+      background: #c2ff6b;
+      color: #16210e;
+    }
+
+    .mock-avatar {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border: 1px solid #dce5d8;
+      border-radius: 50%;
+      background: #fff;
+      color: #42604b;
+      font-size: 0.68rem;
+      font-weight: 800;
+    }
+
+    .mock-heading {
+      margin-bottom: 12px;
+    }
+
+    .mock-heading strong {
+      display: block;
+      font-size: 1.27rem;
+      letter-spacing: -0.055em;
+    }
+
+    .mock-heading span {
+      color: #718075;
+      font-size: 0.76rem;
+    }
+
+    .mock-search {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 15px;
+      padding: 11px 12px;
+      border: 1px solid #e1e9dd;
+      border-radius: 12px;
+      background: #fff;
+      color: #859188;
+      font-size: 0.73rem;
+    }
+
+    .mock-search svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .mock-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 17px;
+    }
+
+    .mock-tab {
+      padding: 6px 10px;
+      border: 1px solid #e0e8dd;
+      border-radius: 20px;
+      background: #fff;
+      color: #68766b;
+      font-size: 0.65rem;
+      font-weight: 650;
+    }
+
+    .mock-tab.active {
+      border-color: #19261c;
+      background: #19261c;
+      color: #fff;
+    }
+
+    .mock-list-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 9px;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .mock-list-title span:last-child {
+      color: #839086;
+      font-size: 0.66rem;
+      font-weight: 650;
+    }
+
+    .mock-offer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 9px;
+      padding: 11px;
+      border: 1px solid #e5ebe1;
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .mock-offer-icon {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 12px;
+      background: #e9f5dc;
+      color: #3e6627;
+    }
+
+    .mock-offer-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .mock-offer-copy {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .mock-offer-copy strong {
+      display: block;
+      font-size: 0.74rem;
+    }
+
+    .mock-offer-copy span {
+      display: block;
+      overflow: hidden;
+      color: #7a887d;
+      font-size: 0.64rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mock-open {
+      color: #47752d;
+      font-size: 0.65rem;
+      font-weight: 800;
+    }
+
+    .mock-footnote {
+      margin-top: 13px;
+      padding: 10px 11px;
+      border-radius: 11px;
+      background: #eaf3e2;
+      color: #50634b;
+      font-size: 0.64rem;
+      line-height: 1.45;
+    }
+
+    .floating-card {
+      position: absolute;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(20, 34, 26, 0.95);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.27);
+      backdrop-filter: blur(12px);
+    }
+
+    .floating-card-top {
+      top: 82px;
+      right: 0;
+    }
+
+    .floating-card-bottom {
+      bottom: 71px;
+      left: -5px;
+    }
+
+    .floating-icon {
+      display: grid;
+      width: 39px;
+      height: 39px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(194, 255, 107, 0.14);
+      color: var(--lime);
+    }
+
+    .floating-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .floating-copy strong {
+      display: block;
+      font-size: 0.82rem;
+    }
+
+    .floating-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.7rem;
+    }
+
+    .ribbon {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #0d1712;
+    }
+
+    .ribbon-inner {
+      display: flex;
+      min-height: 80px;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      padding-block: 14px;
+    }
+
+    .ribbon-label {
+      color: #849287;
+      font-size: 0.75rem;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .ribbon-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #dce6dc;
+      font-size: 0.88rem;
+      font-weight: 650;
+    }
+
+    .ribbon-item svg {
+      width: 18px;
+      height: 18px;
+      color: var(--lime);
+    }
+
+    .section {
+      padding: 94px 0;
+    }
+
+    .section-heading {
+      max-width: 690px;
+      margin-bottom: 43px;
+    }
+
+    .section-kicker {
+      margin-bottom: 12px;
+      color: var(--lime);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: clamp(2.3rem, 4.5vw, 3.7rem);
+      line-height: 1.06;
+      letter-spacing: -0.065em;
+    }
+
+    .section-intro {
+      max-width: 600px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .steps-grid,
+    .ways-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .step-card,
+    .way-card {
+      min-height: 235px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(150deg, rgba(255, 255, 255, 0.025), transparent 65%),
+        var(--surface);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 27px;
+      border: 1px solid rgba(194, 255, 107, 0.24);
+      border-radius: 12px;
+      background: rgba(194, 255, 107, 0.1);
+      color: var(--lime);
+      font-size: 0.8rem;
+      font-weight: 850;
+    }
+
+    .step-card h3,
+    .way-card h3 {
+      margin-bottom: 9px;
+      font-size: 1.13rem;
+      letter-spacing: -0.035em;
+    }
+
+    .step-card p,
+    .way-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .ways-section {
+      background: #0d1712;
+    }
+
+    .way-card {
+      min-height: 252px;
+      background: #111d16;
+    }
+
+    .way-icon {
+      display: grid;
+      width: 45px;
+      height: 45px;
+      margin-bottom: 22px;
+      place-items: center;
+      border: 1px solid rgba(194, 255, 107, 0.17);
+      border-radius: 14px;
+      background: rgba(194, 255, 107, 0.09);
+      color: var(--lime);
+    }
+
+    .way-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .terms-note {
+      margin: 22px 0 0;
+      color: #8b9b8f;
+      font-size: 0.82rem;
+    }
+
+    .cta-section {
+      padding: 22px 0 82px;
+    }
+
+    .cta-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 43px 46px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 78% 0%, rgba(255, 255, 255, 0.2), transparent 28%),
+        var(--lime);
+      color: #17220f;
+    }
+
+    .cta-panel h2 {
+      max-width: 640px;
+      margin-bottom: 10px;
+      font-size: clamp(2rem, 4vw, 3.15rem);
+    }
+
+    .cta-panel p {
+      max-width: 570px;
+      margin-bottom: 0;
+      color: #3b4e2c;
+    }
+
+    .cta-panel .button {
+      flex: 0 0 auto;
+    }
+
+    .faq-section {
+      padding-top: 25px;
+    }
+
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 80px;
+    }
+
+    .faq-heading {
+      max-width: 390px;
+    }
+
+    .faq-heading p {
+      color: var(--muted);
+    }
+
+    .faq-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-list details {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-list summary {
+      position: relative;
+      padding: 20px 38px 20px 0;
+      font-size: 1rem;
+      font-weight: 700;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-list summary::after {
+      position: absolute;
+      top: 17px;
+      right: 4px;
+      color: var(--lime);
+      content: "+";
+      font-size: 1.45rem;
+      font-weight: 400;
+    }
+
+    .faq-list details[open] summary::after {
+      content: "−";
+    }
+
+    .faq-list details p {
+      max-width: 650px;
+      margin: -4px 35px 20px 0;
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .site-footer {
+      margin-top: 70px;
+      border-top: 1px solid var(--border);
+      background: #080e0b;
+    }
+
+    .footer-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 29px 0;
+    }
+
+    .footer-main p {
+      margin: 0;
+      color: #89978d;
+      font-size: 0.84rem;
+    }
+
+    .footer-link {
+      color: var(--lime);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .footer-disclaimer {
+      padding: 0 0 25px;
+      color: #75837a;
+      font-size: 0.76rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr 0.85fr;
+        gap: 25px;
+      }
+
+      .hero-art {
+        min-height: 500px;
+      }
+
+      .floating-card-top {
+        right: -4px;
+      }
+
+      .floating-card-bottom {
+        left: -8px;
+      }
+
+      .faq-layout {
+        gap: 42px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .header-inner {
+        min-height: 68px;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 0 0 18px 18px;
+        background: #101a15;
+        box-shadow: 0 22px 35px rgba(0, 0, 0, 0.28);
+      }
+
+      .nav-links.is-open {
+        display: flex;
+      }
+
+      .nav-links > a:not(.button) {
+        padding: 13px 10px;
+      }
+
+      .nav-links .button {
+        margin-top: 7px;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .hero-copy {
+        max-width: 680px;
+      }
+
+      .hero-art {
+        min-height: 510px;
+      }
+
+      .phone-frame {
+        width: min(100%, 334px);
+      }
+
+      .steps-grid,
+      .ways-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .step-card,
+      .way-card {
+        min-height: auto;
+      }
+
+      .step-number {
+        margin-bottom: 19px;
+      }
+
+      .way-card {
+        padding: 23px;
+      }
+
+      .cta-panel {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 34px;
+      }
+
+      .faq-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .faq-heading {
+        max-width: 600px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: min(calc(100% - 32px), var(--max-width));
+      }
+
+      .install-section {
+        padding-top: 20px;
+      }
+
+      .video-frame {
+        border-radius: 16px;
+      }
+
+      .hero {
+        padding: 36px 0 55px;
+      }
+
+      h1.hero-title {
+        font-size: clamp(3rem, 15vw, 4.4rem);
+      }
+
+      .hero-actions,
+      .install-actions {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .hero-actions .button,
+      .install-actions .button {
+        width: 100%;
+      }
+
+      .text-link {
+        justify-content: center;
+      }
+
+      .hero-art {
+        min-height: 470px;
+      }
+
+      .phone-frame {
+        width: min(100%, 310px);
+      }
+
+      .phone-screen {
+        min-height: 466px;
+        padding: 15px;
+      }
+
+      .floating-card {
+        display: none;
+      }
+
+      .ribbon-inner {
+        justify-content: flex-start;
+        gap: 14px 20px;
+      }
+
+      .ribbon-label {
+        width: 100%;
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 30px;
+      }
+
+      .cta-section {
+        padding: 4px 0 65px;
+      }
+
+      .cta-panel {
+        padding: 27px 23px;
+        border-radius: 22px;
+      }
+
+      .cta-panel .button {
+        width: 100%;
+      }
+
+      .footer-main {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 25px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Freecash home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2.8 14.7 9.3 21.2 12l-6.5 2.7L12 21.2l-2.7-6.5L2.8 12l6.5-2.7L12 2.8Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+        <span>freecash</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-links" id="primary-nav" aria-label="Main navigation">
+        <a href="#install">Install guide</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#ways-to-earn">Explore offers</a>
+        <a href="#faq">FAQ</a>
+        <a class="button button-primary button-small" data-app-link href="#">
+          Get the app
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="install-section" id="install">
+      <div class="container">
+        <div class="install-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            Install guide
+          </div>
+          <h1>See how to install the app</h1>
+          <p>
+            Watch the short walkthrough, then open the download page when you
+            are ready.
+          </p>
+        </div>
+
+        <div class="video-frame">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            title="How to install the Freecash app"
+          >
+            <source src="./install.mp4" type="video/mp4">
+            Your browser does not support this video.
+            <a data-app-link href="#">Open the app download page instead</a>.
+          </video>
+        </div>
+
+        <div class="install-actions">
+          <a class="button button-primary" data-app-link href="#">
+            Get the Freecash app
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="text-link" href="#how-it-works">
+            See how it works
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M10 4v11m-5-5 5 5 5-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            Rewards for your spare moments
+          </div>
+
+          <h1 class="hero-title">Make your free time <em>count.</em></h1>
+
+          <p class="hero-description">
+            Discover surveys, mobile games, and partner offers in one place.
+            Choose what interests you, review the details, and get rewarded
+            when your activity is verified.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" data-app-link href="#">
+              Get the Freecash app
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a class="text-link" href="#install">
+              Watch the install video
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M8 7.2v5.6L13 10 8 7.2Z" fill="currentColor"/>
+                <circle cx="10" cy="10" r="7.2" stroke="currentColor" stroke-width="1.6"/>
+              </svg>
+            </a>
+          </div>
+
+          <p class="hero-note">
+            Offer availability, eligibility, and rewards vary by region.
+            Check each offer’s terms before participating.
+          </p>
+        </div>
+
+        <div class="hero-art">
+          <div class="art-glow" aria-hidden="true"></div>
+
+          <div
+            class="phone-frame"
+            role="img"
+            aria-label="Illustrative preview of a rewards app showing surveys, games, and partner offers"
+          >
+            <div class="phone-screen">
+              <div class="phone-status">
+                <span>9:41</span>
+                <span>••• &nbsp; 100%</span>
+              </div>
+
+              <div class="mock-app-header">
+                <div class="mock-app-name">
+                  <span class="mock-app-symbol" aria-hidden="true">✦</span>
+                  freecash
+                </div>
+                <div class="mock-avatar" aria-hidden="true">F</div>
+              </div>
+
+              <div class="mock-heading">
+                <strong>Find your next activity</strong>
+                <span>Explore what’s available for you</span>
+              </div>
+
+              <div class="mock-search">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <circle cx="8.8" cy="8.8" r="5.8" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="m13.2 13.2 4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+                Search available offers
+              </div>
+
+              <div class="mock-tabs" aria-hidden="true">
+                <span class="mock-tab active">For you</span>
+                <span class="mock-tab">Surveys</span>
+                <span class="mock-tab">Games</span>
+              </div>
+
+              <div class="mock-list-title">
+                <span>Explore offers</span>
+                <span>View all</span>
+              </div>
+
+              <div class="mock-offer">
+                <span class="mock-offer-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M4 5.5h16v11H4zM8 20h8M12 16.5V20M8 9h8M8 12h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="mock-offer-copy">
+                  <strong>Surveys</strong>
+                  <span>Share your opinions</span>
+                </span>
+                <span class="mock-open">Open</span>
+              </div>
+
+              <div class="mock-offer">
+                <span class="mock-offer-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span class="mock-offer-copy">
+                  <strong>Mobile games</strong>
+                  <span>Discover a new game</span>
+                </span>
+                <span class="mock-open">Open</span>
+              </div>
+
+              <div class="mock-offer">
+                <span class="mock-offer-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M5 6.5h14v12H5zM8 4v5M16 4v5M5 10h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="m9 14 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="mock-offer-copy">
+                  <strong>Partner offers</strong>
+                  <span>See available promotions</span>
+                </span>
+                <span class="mock-open">Open</span>
+              </div>
+
+              <div class="mock-footnote">
+                Review the reward and requirements for each offer before you begin.
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-card floating-card-top" aria-hidden="true">
+            <span class="floating-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3v18M17 7.5c0-1.7-2.2-3-5-3s-5 1.3-5 3 2.2 3 5 3 5 1.3 5 3-2.2 3-5 3-5-1.3-5-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <span class="floating-copy">
+              <strong>Reward details</strong>
+              <span>Shown before you start</span>
+            </span>
+          </div>
+
+          <div class="floating-card floating-card-bottom" aria-hidden="true">
+            <span class="floating-icon">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 12.5 9.2 17 19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span class="floating-copy">
+              <strong>Explore at your pace</strong>
+              <span>Choose what suits you</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ribbon" aria-label="Types of activities">
+      <div class="container ribbon-inner">
+        <span class="ribbon-label">Ways to explore</span>
+
+        <span class="ribbon-item">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 5h12v10H4zM7 8h6M7 11h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Surveys
+        </span>
+
+        <span class="ribbon-item">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M6 4h8a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M7 10h6M10 7v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Mobile games
+        </span>
+
+        <span class="ribbon-item">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 5h12v11H4zM7 3v4M13 3v4M4 9h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Partner offers
+        </span>
+      </div>
+    </div>
+
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Simple to explore</p>
+          <h2>Pick an activity. Check the details. Get started.</h2>
+          <p class="section-intro">
+            Browse what’s available to you and choose an offer that fits your
+            interests. Each activity has its own requirements and terms.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <span class="step-number">01</span>
+            <h3>Browse available offers</h3>
+            <p>
+              Explore surveys, games, and partner promotions that may be
+              available in your region.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <span class="step-number">02</span>
+            <h3>Review the requirements</h3>
+            <p>
+              Check the activity instructions, eligibility, and reward details
+              before you choose to participate.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <span class="step-number">03</span>
+            <h3>Complete and verify</h3>
+            <p>
+              Follow the offer instructions. Eligible rewards are subject to
+              completion verification and the offer’s terms.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ways-section" id="ways-to-earn">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">Find your kind of activity</p>
+          <h2>Different ways to take part.</h2>
+          <p class="section-intro">
+            The offers you see can change depending on your location,
+            eligibility, and what partners currently have available.
+          </p>
+        </div>
+
+        <div class="ways-grid">
+          <article class="way-card">
+            <span class="way-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 5.5h16v13H4zM8 9h8M8 12h8M8 15h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <h3>Surveys</h3>
+            <p>
+              Answer surveys from partner providers and share your views.
+              Screening and availability can vary.
+            </p>
+          </article>
+
+          <article class="way-card">
+            <span class="way-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M7 4h10a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3Z" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <h3>Mobile games</h3>
+            <p>
+              Discover game offers and challenges. Check any install,
+              progress, or time requirements before starting.
+            </p>
+          </article>
+
+          <article class="way-card">
+            <span class="way-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 6h14v12H5zM8 4v5M16 4v5M5 10h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="m9 14 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <h3>Partner offers</h3>
+            <p>
+              Explore promotions from partner services. Some offers may have
+              extra conditions, so read their terms carefully.
+            </p>
+          </article>
+        </div>
+
+        <p class="terms-note">
+          Some partner offers may involve a purchase, subscription, or other
+          condition. Always review an offer’s requirements before participating.
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-panel">
+          <div>
+            <h2>Ready to see what’s available?</h2>
+            <p>
+              Explore Freecash and find activities that match your interests
+              and availability.
+            </p>
+          </div>
+
+          <a class="button button-dark" data-app-link href="#">
+            Get the app
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+      <div class="container faq-layout">
+        <div class="faq-heading">
+          <p class="section-kicker">Good to know</p>
+          <h2>Questions, answered.</h2>
+          <p>
+            Offer rules and reward options can vary. Check the details in
+            Freecash before getting started.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>How does Freecash work?</summary>
+            <p>
+              Browse the activities available to you, review an offer’s
+              requirements, and follow its instructions. Any eligible reward
+              depends on successful completion and verification under the
+              offer’s terms.
+            </p>
+          </details>
+
+          <details>
+            <summary>Is a specific reward amount guaranteed?</summary>
+            <p>
+              No. Reward amounts and availability vary by offer and region.
+              Participation does not guarantee a particular amount of rewards
+              or income.
+            </p>
+          </details>
+
+          <details>
+            <summary>Are offers available everywhere?</summary>
+            <p>
+              No. Offers and eligibility can differ by country, account, and
+              partner. Check the app for the activities currently available to you.
+            </p>
+          </details>
+
+          <details>
+            <summary>What payout options can I use?</summary>
+            <p>
+              Available reward and cash-out options can vary by region and
+              account. See the current options and any applicable requirements
+              in Freecash.
+            </p>
+          </details>
+
+          <details>
+            <summary>Should I check offer terms first?</summary>
+            <p>
+              Yes. Review the requirements, deadlines, eligibility rules, and
+              any costs or subscriptions before starting an offer.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <a class="brand" href="#top" aria-label="Back to top">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2.8 14.7 9.3 21.2 12l-6.5 2.7L12 21.2l-2.7-6.5L2.8 12l6.5-2.7L12 2.8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          <span>freecash</span>
+        </a>
+
+        <p>© <span id="year"></span> Freecash. All rights reserved.</p>
+
+        <a class="footer-link" data-app-link href="#">
+          Visit Freecash
+        </a>
+      </div>
+
+      <p class="footer-disclaimer">
+        Rewards are subject to offer requirements and verification. Offer
+        availability, eligibility, reward amounts, and cash-out options may vary
+        by region. This page does not promise any specific earnings.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const APP_URL = document.documentElement.dataset.appUrl;
+
+    document.querySelectorAll("[data-app-link]").forEach((link) => {
+      link.href = APP_URL;
+    });
+
+    const menuButton = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector("#primary-nav");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen ? "Open navigation menu" : "Close navigation menu"
+      );
+      navigation.classList.toggle("is-open", !isOpen);
+    });
+
+    navigation.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open navigation menu");
+        navigation.classList.remove("is-open");
+      });
+    });
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
