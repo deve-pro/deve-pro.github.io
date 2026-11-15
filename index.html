@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en" data-app-url="https://github.com/mods4u/mods4u.github.io/releases/download/v1/6677.zip">
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-app-url="https://github.com/mods4u/mods4u.github.io/releases/download/v1/6677.zip">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -80,6 +80,24 @@
 
     .skip-link:focus {
       top: 12px;
+    }
+
+    .no-script-note {
+      display: none;
+      margin: 14px auto 0;
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      text-align: center;
+    }
+
+    .no-js .no-script-note {
+      display: block;
+    }
+
+    .no-js a[data-app-link] {
+      pointer-events: none;
+      opacity: 0.45;
     }
 
     a:focus-visible,
@@ -262,7 +280,7 @@
       margin-top: 0;
     }
 
-    .install-copy h1 {
+    .install-copy h2 {
       margin-bottom: 12px;
       font-size: clamp(2.1rem, 4.8vw, 3.4rem);
       line-height: 1.05;
@@ -1165,7 +1183,7 @@
         <a href="#how-it-works">How it works</a>
         <a href="#ways-to-earn">Explore offers</a>
         <a href="#faq">FAQ</a>
-        <a class="button button-primary button-small" data-app-link href="#">
+        <a class="button button-primary button-small" data-app-link href="#" aria-disabled="true" tabindex="-1">
           Get the app
           <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
             <path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1183,7 +1201,7 @@
             <span class="eyebrow-dot" aria-hidden="true"></span>
             Install guide
           </div>
-          <h1>See how to install the app</h1>
+          <h2>See how to install the app</h2>
           <p>
             Watch the short walkthrough, then open the download page when you
             are ready.
@@ -1199,12 +1217,11 @@
           >
             <source src="./install.mp4" type="video/mp4">
             Your browser does not support this video.
-            <a data-app-link href="#">Open the app download page instead</a>.
           </video>
         </div>
 
         <div class="install-actions">
-          <a class="button button-primary" data-app-link href="#">
+          <a class="button button-primary" data-app-link href="#" aria-disabled="true" tabindex="-1">
             Get the Freecash app
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1217,6 +1234,13 @@
             </svg>
           </a>
         </div>
+
+        <noscript>
+          <p class="no-script-note">
+            JavaScript is turned off, so the app download buttons are inactive.
+            <a href="#how-it-works">See how it works</a>.
+          </p>
+        </noscript>
       </div>
     </section>
 
@@ -1237,7 +1261,7 @@
           </p>
 
           <div class="hero-actions">
-            <a class="button button-primary" data-app-link href="#">
+            <a class="button button-primary" data-app-link href="#" aria-disabled="true" tabindex="-1">
               Get the Freecash app
               <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1378,7 +1402,7 @@
       </div>
     </section>
 
-    <div class="ribbon" aria-label="Types of activities">
+    <div class="ribbon" role="group" aria-label="Types of activities">
       <div class="container ribbon-inner">
         <span class="ribbon-label">Ways to explore</span>
 
@@ -1520,7 +1544,7 @@
             </p>
           </div>
 
-          <a class="button button-dark" data-app-link href="#">
+          <a class="button button-dark" data-app-link href="#" aria-disabled="true" tabindex="-1">
             Get the app
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
               <path d="M4 10h11M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1607,7 +1631,7 @@
 
         <p>© <span id="year"></span> Freecash. All rights reserved.</p>
 
-        <a class="footer-link" data-app-link href="#">
+        <a class="footer-link" data-app-link href="#" aria-disabled="true" tabindex="-1">
           Visit Freecash
         </a>
       </div>
@@ -1621,34 +1645,47 @@
   </footer>
 
   <script>
-    const APP_URL = document.documentElement.dataset.appUrl;
+    const root = document.documentElement;
+    const APP_URL = root.dataset.appUrl;
 
-    document.querySelectorAll("[data-app-link]").forEach((link) => {
-      link.href = APP_URL;
-    });
+    root.classList.remove("no-js");
+
+    if (APP_URL) {
+      document.querySelectorAll("[data-app-link]").forEach((link) => {
+        link.href = APP_URL;
+        link.removeAttribute("aria-disabled");
+        link.removeAttribute("tabindex");
+      });
+    }
 
     const menuButton = document.querySelector(".menu-toggle");
     const navigation = document.querySelector("#primary-nav");
 
-    menuButton.addEventListener("click", () => {
-      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
-      menuButton.setAttribute("aria-expanded", String(!isOpen));
-      menuButton.setAttribute(
-        "aria-label",
-        isOpen ? "Open navigation menu" : "Close navigation menu"
-      );
-      navigation.classList.toggle("is-open", !isOpen);
-    });
-
-    navigation.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Open navigation menu");
-        navigation.classList.remove("is-open");
+    if (menuButton && navigation) {
+      menuButton.addEventListener("click", () => {
+        const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!isOpen));
+        menuButton.setAttribute(
+          "aria-label",
+          isOpen ? "Open navigation menu" : "Close navigation menu"
+        );
+        navigation.classList.toggle("is-open", !isOpen);
       });
-    });
 
-    document.querySelector("#year").textContent = new Date().getFullYear();
+      navigation.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open navigation menu");
+          navigation.classList.remove("is-open");
+        });
+      });
+    }
+
+    const year = document.querySelector("#year");
+
+    if (year) {
+      year.textContent = new Date().getFullYear();
+    }
   </script>
 </body>
 </html>
