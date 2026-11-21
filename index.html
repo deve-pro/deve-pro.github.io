@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#161614">
+  <meta name="theme-color" content="#0c0e12">
   <meta
     name="description"
     content="Practical guide to getting started with Freecash: create an account, install the app, and understand how surveys, game milestones, and partner offers work."
@@ -21,7 +21,7 @@
         document.documentElement.dataset.theme = "light";
         const metaTheme = document.querySelector('meta[name="theme-color"]');
         if (metaTheme) {
-          metaTheme.setAttribute("content", "#f6f5f0");
+          metaTheme.setAttribute("content", "#f7f8fa");
         }
       }
     } catch (_) {
@@ -32,44 +32,49 @@
   <style>
     :root {
       color-scheme: dark;
-      --bg: #161614;
-      --surface: #1f1f1c;
-      --surface-subtle: #262622;
-      --ink: #ededeb;
-      --muted: #b0ada4;
-      --faint: #969288;
-      --border: #32312c;
-      --border-strong: #4a4841;
-      --accent: #275d4a;
-      --accent-hover: #2f6e58;
-      --on-accent: #f6f5f0;
-      --accent-text: #8db8a5;
-      --accent-text-hover: #a7ccbc;
-      --accent-wash: #212e28;
-      --menu-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
-      --max-width: 1060px;
-      --radius: 6px;
-      --radius-lg: 8px;
+      --bg: #0c0e12;
+      --surface: #13161d;
+      --surface-2: #1a1e27;
+      --ink: #f3f4f6;
+      --muted: #9ca3af;
+      --faint: #8891a0;
+      --border: #232834;
+      --border-hover: #363e50;
+      --primary-bg: #f3f4f6;
+      --primary-hover: #ffffff;
+      --primary-ink: #0c0e12;
+      --accent-text: #8db0fa;
+      --accent-hover: #adc6fc;
+      --accent-soft: #172033;
+      --accent-border: #263657;
+      --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+      --menu-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      --max-width: 1140px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
 
     :root[data-theme="light"] {
       color-scheme: light;
-      --bg: #f6f5f0;
+      --bg: #f7f8fa;
       --surface: #ffffff;
-      --surface-subtle: #eeece5;
-      --ink: #171715;
-      --muted: #525049;
-      --faint: #6b685f;
-      --border: #dad6cc;
-      --border-strong: #b9b4a8;
-      --accent: #1d4e3e;
-      --accent-hover: #14382c;
-      --on-accent: #ffffff;
-      --accent-text: #1d4e3e;
-      --accent-text-hover: #14382c;
-      --accent-wash: #e7efec;
-      --menu-shadow: 0 12px 24px rgba(23, 23, 21, 0.08);
+      --surface-2: #eef1f6;
+      --ink: #0f172a;
+      --muted: #475569;
+      --faint: #5b677a;
+      --border: #e2e6ee;
+      --border-hover: #c5cddb;
+      --primary-bg: #0f172a;
+      --primary-hover: #1e293b;
+      --primary-ink: #ffffff;
+      --accent-text: #1e40af;
+      --accent-hover: #1d4ed8;
+      --accent-soft: #e8effd;
+      --accent-border: #c7d8fa;
+      --card-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.03);
+      --menu-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
     }
 
     *,
@@ -87,7 +92,7 @@
       margin: 0;
       background: var(--bg);
       color: var(--ink);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -106,8 +111,6 @@
     h2,
     h3,
     p,
-    dl,
-    dd,
     ol,
     ul {
       margin-top: 0;
@@ -123,10 +126,10 @@
       top: -60px;
       left: 16px;
       z-index: 100;
-      padding: 8px 14px;
-      border-radius: var(--radius);
-      background: var(--accent);
-      color: var(--on-accent);
+      padding: 9px 15px;
+      border-radius: var(--radius-sm);
+      background: var(--primary-bg);
+      color: var(--primary-ink);
       font-size: 0.875rem;
       font-weight: 600;
     }
@@ -138,10 +141,10 @@
     .no-script-note {
       display: none;
       margin: 14px 0 0;
-      padding: 10px 12px;
+      padding: 12px 14px;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--surface-subtle);
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
       color: var(--muted);
       font-size: 0.85rem;
     }
@@ -168,63 +171,77 @@
       outline-offset: 3px;
     }
 
-    /* Header & top link bar */
+    /* Sticky Header & Top Link Bar */
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 30;
       border-bottom: 1px solid var(--border);
       background: var(--bg);
     }
 
     .link-bar {
       border-bottom: 1px solid var(--border);
-      background: var(--surface-subtle);
+      background: var(--surface);
     }
 
     .link-bar-inner {
       display: flex;
-      min-height: 40px;
+      min-height: 38px;
       align-items: center;
-      gap: 18px;
-      font-size: 0.84rem;
+      gap: 14px;
+      font-size: 0.82rem;
     }
 
-    .link-bar-label {
+    .link-bar-badge {
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface-2);
       color: var(--muted);
-      font-weight: 500;
+      font-size: 0.72rem;
+      font-weight: 600;
     }
 
     .link-bar-download {
-      color: var(--accent-text);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--ink);
       font-weight: 600;
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      transition: color 150ms ease;
+    }
+
+    .link-bar-download svg {
+      width: 14px;
+      height: 14px;
+      color: var(--accent-text);
     }
 
     .link-bar-download:hover {
-      color: var(--accent-text-hover);
+      color: var(--accent-text);
     }
 
     .link-bar-cta {
       display: inline-flex;
-      min-height: 28px;
+      min-height: 27px;
       align-items: center;
       justify-content: center;
       margin-left: auto;
       padding: 0 12px;
-      border: 1px solid var(--accent);
-      border-radius: var(--radius);
-      background: var(--accent);
-      color: var(--on-accent);
-      font-size: 0.8rem;
+      border: 1px solid var(--border-hover);
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--ink);
+      font-size: 0.78rem;
       font-weight: 600;
-      transition: background 140ms ease, border-color 140ms ease;
+      transition: background 150ms ease, border-color 150ms ease;
     }
 
     .link-bar-cta:hover {
-      border-color: var(--accent-hover);
-      background: var(--accent-hover);
+      border-color: var(--ink);
+      background: var(--primary-bg);
+      color: var(--primary-ink);
     }
 
     .header-inner {
@@ -232,27 +249,40 @@
       display: flex;
       min-height: 64px;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
     }
 
     .brand {
       display: inline-flex;
-      align-items: baseline;
-      gap: 8px;
+      align-items: center;
+      gap: 10px;
       margin-right: auto;
-      font-size: 1.12rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
     }
 
-    .brand-tag {
+    .brand-mark {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--primary-bg);
+      color: var(--primary-ink);
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-pill {
       padding: 2px 7px;
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 6px;
       background: var(--surface);
       color: var(--muted);
       font-family: var(--mono);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 500;
       letter-spacing: 0;
     }
@@ -260,18 +290,25 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 4px;
     }
 
     .nav-links > a:not(.button) {
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 500;
-      transition: color 140ms ease;
+      transition: color 150ms ease, background 150ms ease;
     }
 
     .nav-links > a:not(.button):hover {
+      background: var(--surface-2);
       color: var(--ink);
+    }
+
+    .nav-links .button {
+      margin-left: 8px;
     }
 
     .header-actions {
@@ -280,50 +317,56 @@
       gap: 8px;
     }
 
+    /* Segmented Pill Theme Switcher */
     .theme-toggle {
       display: inline-flex;
-      min-height: 36px;
+      height: 36px;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 0 11px;
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius);
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
       background: var(--surface);
-      color: var(--ink);
-      font-size: 0.84rem;
-      font-weight: 500;
+      color: var(--muted);
       cursor: pointer;
-      transition: background 140ms ease, border-color 140ms ease;
+      transition: border-color 150ms ease;
     }
 
     .theme-toggle:hover {
-      border-color: var(--ink);
-      background: var(--surface-subtle);
+      border-color: var(--border-hover);
     }
 
-    .theme-toggle svg {
-      width: 14px;
-      height: 14px;
+    .theme-opt {
+      display: inline-flex;
+      height: 28px;
+      align-items: center;
+      gap: 5px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      transition: background 150ms ease, color 150ms ease;
+    }
+
+    .theme-opt svg {
+      width: 13px;
+      height: 13px;
       flex-shrink: 0;
     }
 
-    .icon-moon,
-    .theme-label-dark {
-      display: none;
+    .theme-opt-dark {
+      background: var(--surface-2);
+      color: var(--ink);
     }
 
-    :root[data-theme="light"] .icon-sun,
-    :root[data-theme="light"] .theme-label-light {
-      display: none;
+    :root[data-theme="light"] .theme-opt-dark {
+      background: transparent;
+      color: var(--muted);
     }
 
-    :root[data-theme="light"] .icon-moon {
-      display: block;
-    }
-
-    :root[data-theme="light"] .theme-label-dark {
-      display: inline;
+    :root[data-theme="light"] .theme-opt-light {
+      background: var(--surface-2);
+      color: var(--ink);
     }
 
     .menu-toggle {
@@ -334,8 +377,8 @@
       justify-content: center;
       flex-direction: column;
       gap: 5px;
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
       background: var(--surface);
       color: var(--ink);
       cursor: pointer;
@@ -348,86 +391,108 @@
       background: currentColor;
     }
 
-    /* Buttons & inline links */
+    /* Buttons & Links */
     .button {
       display: inline-flex;
       min-height: 44px;
       align-items: center;
       justify-content: center;
+      gap: 8px;
       padding: 0 18px;
       border: 1px solid transparent;
-      border-radius: var(--radius);
-      font-size: 0.92rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
       font-weight: 600;
-      transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+      transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .button svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
     }
 
     .button-primary {
-      border-color: var(--accent);
-      background: var(--accent);
-      color: var(--on-accent);
+      border-color: var(--primary-bg);
+      background: var(--primary-bg);
+      color: var(--primary-ink);
     }
 
     .button-primary:hover {
-      border-color: var(--accent-hover);
-      background: var(--accent-hover);
+      border-color: var(--primary-hover);
+      background: var(--primary-hover);
     }
 
     .button-secondary {
-      border-color: var(--border-strong);
+      border-color: var(--border);
       background: var(--surface);
       color: var(--ink);
     }
 
     .button-secondary:hover {
-      border-color: var(--ink);
-      background: var(--surface-subtle);
+      border-color: var(--border-hover);
+      background: var(--surface-2);
     }
 
     .button-small {
       min-height: 36px;
       padding-inline: 14px;
-      font-size: 0.86rem;
+      font-size: 0.84rem;
     }
 
     .inline-link {
       color: var(--accent-text);
       font-weight: 600;
+      transition: color 150ms ease;
+    }
+
+    .inline-link:hover {
+      color: var(--accent-hover);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
-    .inline-link:hover {
-      color: var(--accent-text-hover);
-    }
-
-    /* Hero */
+    /* Hero + Bento Architecture */
     .hero {
-      padding: 64px 0 56px;
+      padding: 72px 0 68px;
       border-bottom: 1px solid var(--border);
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      align-items: start;
+      grid-template-columns: 1.08fr 0.92fr;
+      align-items: center;
       gap: 48px;
     }
 
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      padding: 5px 12px;
+      border: 1px solid var(--accent-border);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-text);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
     .hero-title {
-      max-width: 580px;
+      max-width: 590px;
       margin-bottom: 18px;
-      font-size: clamp(2rem, 4vw, 2.85rem);
-      font-weight: 700;
-      line-height: 1.14;
-      letter-spacing: -0.025em;
+      font-size: clamp(2.35rem, 4.6vw, 3.55rem);
+      font-weight: 750;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
     }
 
     .hero-description {
-      max-width: 540px;
-      margin-bottom: 28px;
+      max-width: 530px;
+      margin-bottom: 30px;
       color: var(--muted);
-      font-size: 1.05rem;
+      font-size: 1.06rem;
       line-height: 1.65;
     }
 
@@ -435,260 +500,412 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px 16px;
+      gap: 12px;
     }
 
-    .jump-link {
+    .video-jump {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 7px;
+      padding: 0 12px;
       color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 150ms ease;
     }
 
-    .jump-link:hover {
+    .video-jump svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-text);
+    }
+
+    .video-jump:hover {
       color: var(--ink);
     }
 
-    .facts-card {
-      padding: 22px 24px;
+    /* Right Hero Bento Stack */
+    .bento-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .bento-card {
+      padding: 20px 22px;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       background: var(--surface);
+      box-shadow: var(--card-shadow);
     }
 
-    .facts-title {
-      margin-bottom: 14px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
+    .bento-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .bento-label {
       color: var(--ink);
-      font-size: 0.88rem;
-      font-weight: 700;
+      font-size: 0.86rem;
+      font-weight: 650;
     }
 
-    .facts-list {
-      margin: 0;
+    .bento-tag {
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.7rem;
     }
 
-    .facts-row {
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
     }
 
-    .facts-row:last-child {
-      padding-bottom: 0;
-      border-bottom: 0;
+    .pipeline-step {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface-2);
     }
 
-    .facts-row dt {
-      margin-bottom: 2px;
-      color: var(--ink);
-      font-size: 0.84rem;
+    .pipeline-num {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent-text);
+      font-family: var(--mono);
+      font-size: 0.72rem;
       font-weight: 600;
     }
 
-    .facts-row dd {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.86rem;
-      line-height: 1.5;
+    .pipeline-step strong {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 650;
     }
 
-    /* Generic sections */
+    .pipeline-step span {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .bento-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .mini-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    .mini-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.82rem;
+    }
+
+    .mini-chip {
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: 0.71rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .check-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .check-list svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      color: var(--accent-text);
+    }
+
+    /* Sections */
     .section {
-      padding: 64px 0;
+      padding: 76px 0;
       border-bottom: 1px solid var(--border);
     }
 
     .section-header {
-      max-width: 620px;
-      margin-bottom: 32px;
+      max-width: 640px;
+      margin-bottom: 36px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--accent-text);
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      font-weight: 600;
     }
 
     h2 {
-      margin-bottom: 10px;
-      font-size: clamp(1.5rem, 2.6vw, 1.95rem);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      font-size: clamp(1.75rem, 3vw, 2.35rem);
+      font-weight: 720;
+      line-height: 1.15;
+      letter-spacing: -0.028em;
     }
 
     .section-intro {
       margin-bottom: 0;
       color: var(--muted);
-      font-size: 0.98rem;
+      font-size: 1rem;
     }
 
-    /* Install section */
+    /* Install Studio Section */
     .install-layout {
       display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
+      grid-template-columns: 0.86fr 1.14fr;
       align-items: start;
-      gap: 40px;
+      gap: 36px;
     }
 
     .install-steps {
-      margin: 22px 0 26px;
+      margin: 24px 0;
       padding: 0;
       list-style: none;
-      border-top: 1px solid var(--border);
+      display: grid;
+      gap: 10px;
     }
 
     .install-steps li {
       display: grid;
-      grid-template-columns: 32px 1fr;
-      gap: 10px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.92rem;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      box-shadow: var(--card-shadow);
+      transition: border-color 150ms ease;
     }
 
-    .step-index {
+    .install-steps li:hover {
+      border-color: var(--border-hover);
+    }
+
+    .step-badge {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--accent-soft);
       color: var(--accent-text);
       font-family: var(--mono);
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding-top: 2px;
+      font-size: 0.76rem;
+      font-weight: 700;
     }
 
     .install-steps strong {
       display: block;
       margin-bottom: 2px;
-      color: var(--ink);
-      font-weight: 600;
+      font-size: 0.92rem;
+      font-weight: 650;
     }
 
     .install-steps span {
       color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.5;
     }
 
-    .video-card {
+    .media-card {
       overflow: hidden;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       background: var(--surface);
+      box-shadow: var(--card-shadow);
     }
 
-    .video-card video {
+    .media-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-2);
+      font-size: 0.8rem;
+    }
+
+    .media-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .media-title svg {
+      width: 15px;
+      height: 15px;
+      color: var(--accent-text);
+    }
+
+    .media-file {
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+    }
+
+    .media-card video {
       display: block;
       width: 100%;
       height: auto;
       aspect-ratio: 16 / 9;
       max-height: 520px;
-      background: #0f0f0e;
+      background: #07090c;
       vertical-align: middle;
     }
 
-    .video-caption {
+    .media-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 8px 16px;
-      padding: 11px 16px;
+      padding: 12px 16px;
       border-top: 1px solid var(--border);
-      background: var(--surface-subtle);
       color: var(--muted);
       font-size: 0.82rem;
     }
 
-    .video-caption code {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-    }
-
-    /* How it works 3-column architectural grid */
-    .process-grid {
+    /* 3-Column Bento Grids */
+    .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       background: var(--surface);
-      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: border-color 150ms ease;
     }
 
-    .process-item {
-      padding: 26px 24px;
-      border-right: 1px solid var(--border);
+    .feature-card:hover {
+      border-color: var(--border-hover);
     }
 
-    .process-item:last-child {
-      border-right: 0;
-    }
-
-    .process-num {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: var(--accent-wash);
+    .card-num {
+      display: inline-flex;
+      align-self: flex-start;
+      margin-bottom: 18px;
+      padding: 3px 9px;
+      border: 1px solid var(--accent-border);
+      border-radius: 6px;
+      background: var(--accent-soft);
       color: var(--accent-text);
       font-family: var(--mono);
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       font-weight: 600;
     }
 
-    .process-item h3 {
-      margin-bottom: 8px;
-      font-size: 1.04rem;
-      font-weight: 650;
-      letter-spacing: -0.01em;
+    .icon-tile {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface-2);
+      color: var(--accent-text);
     }
 
-    .process-item p {
+    .icon-tile svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+      font-weight: 650;
+      letter-spacing: -0.015em;
+    }
+
+    .feature-card p {
       margin-bottom: 0;
       color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.58;
-    }
-
-    /* Offer types comparison table */
-    .table-wrap {
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      background: var(--surface);
-      overflow-x: auto;
-    }
-
-    .offers-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
       font-size: 0.91rem;
+      line-height: 1.6;
     }
 
-    .offers-table th,
-    .offers-table td {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
+    .card-check-box {
+      margin-top: auto;
+      padding-top: 18px;
     }
 
-    .offers-table thead th {
-      background: var(--surface-subtle);
+    .card-check-inner {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface-2);
+    }
+
+    .card-check-label {
+      display: block;
+      margin-bottom: 4px;
       color: var(--ink);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 650;
     }
 
-    .offers-table tbody tr:last-child th,
-    .offers-table tbody tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .offers-table tbody th {
-      width: 20%;
-      color: var(--ink);
-      font-weight: 650;
-      white-space: nowrap;
-    }
-
-    .offers-table td {
+    .card-check-inner span {
+      display: block;
       color: var(--muted);
-      line-height: 1.55;
+      font-size: 0.81rem;
+      line-height: 1.48;
     }
 
-    /* FAQ */
+    /* Modern Expandable Card FAQ */
     .faq-layout {
       display: grid;
       grid-template-columns: 0.72fr 1.28fr;
@@ -696,54 +913,64 @@
       align-items: start;
     }
 
-    .faq-list {
-      border-top: 1px solid var(--border);
+    .faq-stack {
+      display: grid;
+      gap: 10px;
     }
 
-    .faq-list details {
-      border-bottom: 1px solid var(--border);
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      box-shadow: var(--card-shadow);
+      transition: border-color 150ms ease;
     }
 
-    .faq-list summary {
-      position: relative;
-      padding: 18px 34px 18px 0;
+    .faq-item:hover {
+      border-color: var(--border-hover);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
       color: var(--ink);
-      font-size: 0.97rem;
+      font-size: 0.96rem;
       font-weight: 600;
       list-style: none;
       cursor: pointer;
     }
 
-    .faq-list summary::-webkit-details-marker {
+    .faq-item summary::-webkit-details-marker {
       display: none;
     }
 
-    .faq-list summary::after {
-      position: absolute;
-      top: 15px;
-      right: 4px;
+    .faq-chevron {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
       color: var(--muted);
-      font-family: var(--mono);
-      content: "+";
-      font-size: 1.15rem;
-      font-weight: 400;
+      transition: transform 180ms ease, color 150ms ease;
     }
 
-    .faq-list details[open] summary::after {
-      content: "−";
+    .faq-item[open] .faq-chevron {
+      color: var(--ink);
+      transform: rotate(180deg);
     }
 
-    .faq-list details p {
-      max-width: 620px;
-      margin: -2px 28px 18px 0;
+    .faq-item p {
+      margin: 0;
+      padding: 0 20px 18px;
       color: var(--muted);
       font-size: 0.9rem;
-      line-height: 1.6;
+      line-height: 1.62;
     }
 
-    /* Contact / Repo section */
+    /* Contact & Repository Bento Banner */
     .contact-section {
-      padding: 64px 0;
+      padding: 72px 0;
     }
 
     .contact-card {
@@ -751,35 +978,58 @@
       align-items: center;
       justify-content: space-between;
       gap: 32px;
-      padding: 32px 34px;
+      padding: 34px 36px;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       background: var(--surface);
+      box-shadow: var(--card-shadow);
     }
 
-    .contact-copy {
-      max-width: 580px;
+    .contact-main {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      max-width: 620px;
+    }
+
+    .github-tile {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface-2);
+      color: var(--ink);
+    }
+
+    .github-tile svg {
+      width: 22px;
+      height: 22px;
     }
 
     .contact-copy h2 {
       margin-bottom: 8px;
+      font-size: clamp(1.4rem, 2.4vw, 1.75rem);
     }
 
     .contact-copy p {
       margin-bottom: 12px;
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 0.93rem;
     }
 
     .repo-slug {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       padding: 4px 10px;
       border: 1px solid var(--border);
-      border-radius: 4px;
-      background: var(--surface-subtle);
+      border-radius: 6px;
+      background: var(--surface-2);
       color: var(--ink);
       font-family: var(--mono);
-      font-size: 0.82rem;
+      font-size: 0.78rem;
     }
 
     .contact-actions {
@@ -792,7 +1042,7 @@
     /* Footer */
     .site-footer {
       border-top: 1px solid var(--border);
-      background: var(--surface-subtle);
+      background: var(--surface);
     }
 
     .footer-main {
@@ -801,7 +1051,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 16px 24px;
-      padding: 26px 0 18px;
+      padding: 28px 0 18px;
     }
 
     .footer-meta {
@@ -813,14 +1063,14 @@
     .footer-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px 20px;
+      gap: 8px 18px;
       font-size: 0.86rem;
     }
 
     .footer-nav a {
       color: var(--muted);
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      font-weight: 500;
+      transition: color 150ms ease;
     }
 
     .footer-nav a:hover {
@@ -829,32 +1079,23 @@
 
     .footer-disclaimer {
       margin: 0;
-      padding: 0 0 26px;
+      padding: 0 0 28px;
       color: var(--faint);
       font-size: 0.78rem;
       line-height: 1.55;
     }
 
     /* Responsive */
-    @media (max-width: 880px) {
+    @media (max-width: 960px) {
       .hero-grid,
       .install-layout,
       .faq-layout {
         grid-template-columns: 1fr;
-        gap: 28px;
+        gap: 32px;
       }
 
-      .process-grid {
+      .cards-grid {
         grid-template-columns: 1fr;
-      }
-
-      .process-item {
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .process-item:last-child {
-        border-bottom: 0;
       }
 
       .contact-card {
@@ -863,7 +1104,7 @@
       }
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       html {
         scroll-padding-top: 108px;
       }
@@ -874,21 +1115,11 @@
 
       .link-bar-inner {
         min-height: 36px;
-        gap: 12px;
+        gap: 10px;
       }
 
-      .link-bar-label {
+      .link-bar-badge {
         display: none;
-      }
-
-      .link-bar-download {
-        font-size: 0.8rem;
-      }
-
-      .link-bar-cta {
-        min-height: 26px;
-        padding-inline: 10px;
-        font-size: 0.76rem;
       }
 
       .menu-toggle {
@@ -903,7 +1134,7 @@
         display: none;
         align-items: stretch;
         flex-direction: column;
-        gap: 0;
+        gap: 2px;
         padding: 10px 12px 14px;
         border: 1px solid var(--border);
         border-radius: 0 0 var(--radius-lg) var(--radius-lg);
@@ -916,82 +1147,39 @@
       }
 
       .nav-links > a:not(.button) {
-        padding: 11px 6px;
-        border-bottom: 1px solid var(--border);
+        padding: 11px 10px;
       }
 
       .nav-links .button {
-        margin-top: 10px;
+        margin: 8px 0 0;
       }
     }
 
-    @media (max-width: 760px) {
-      .offers-table,
-      .offers-table thead,
-      .offers-table tbody,
-      .offers-table tr,
-      .offers-table th,
-      .offers-table td {
-        display: block;
-        width: 100%;
-      }
-
-      .offers-table thead {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        clip-path: inset(50%);
-      }
-
-      .offers-table tbody tr {
-        padding: 16px 18px;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .offers-table tbody tr:last-child {
-        border-bottom: 0;
-      }
-
-      .offers-table tbody th {
-        padding: 0 0 6px;
-        border-bottom: 0;
-        font-size: 0.98rem;
-      }
-
-      .offers-table tbody td {
-        padding: 4px 0;
-        border-bottom: 0;
-      }
-
-      .offers-table tbody td::before {
-        display: block;
-        color: var(--ink);
-        font-size: 0.75rem;
-        font-weight: 600;
-      }
-
-      .offers-table tbody td:nth-of-type(1)::before {
-        content: "What it involves";
-      }
-
-      .offers-table tbody td:nth-of-type(2)::before {
-        content: "What to check first";
-      }
-    }
-
-    @media (max-width: 520px) {
+    @media (max-width: 580px) {
       .container {
         width: min(calc(100% - 32px), var(--max-width));
       }
 
+      .theme-opt span {
+        display: none;
+      }
+
+      .theme-opt {
+        padding: 0 8px;
+      }
+
       .hero {
-        padding: 44px 0 42px;
+        padding: 46px 0 48px;
+      }
+
+      .pipeline,
+      .bento-pair {
+        grid-template-columns: 1fr;
       }
 
       .section,
       .contact-section {
-        padding: 48px 0;
+        padding: 52px 0;
       }
 
       .hero-actions,
@@ -1006,12 +1194,16 @@
         width: 100%;
       }
 
-      .jump-link {
-        text-align: center;
+      .video-jump {
+        justify-content: center;
       }
 
       .contact-card {
         padding: 24px 20px;
+      }
+
+      .contact-main {
+        flex-direction: column;
       }
     }
 
@@ -1032,9 +1224,12 @@
   <header class="site-header">
     <div class="link-bar">
       <div class="container link-bar-inner">
-        <span class="link-bar-label">Quick links:</span>
+        <span class="link-bar-badge">Quick access</span>
 
         <a class="link-bar-download" data-app-link href="#" aria-disabled="true" tabindex="-1">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 2.5v7.2m0 0L5.3 7m2.7 2.7L10.7 7M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           Download app
         </a>
 
@@ -1046,8 +1241,9 @@
 
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="Freecash guide home">
+        <span class="brand-mark" aria-hidden="true">F</span>
         <span>Freecash</span>
-        <span class="brand-tag">guide</span>
+        <span class="brand-pill">guide</span>
       </a>
 
       <nav class="nav-links" id="primary-nav" aria-label="Main navigation">
@@ -1068,15 +1264,19 @@
           id="theme-toggle"
           aria-label="Switch to light theme"
         >
-          <svg class="icon-sun" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.4"/>
-            <path d="M8 1.5v1.8M8 12.7v1.8M1.5 8h1.8M12.7 8h1.8M3.4 3.4l1.3 1.3M11.3 11.3l1.3 1.3M12.6 3.4l-1.3 1.3M4.7 11.3l-1.3 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-          </svg>
-          <svg class="icon-moon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M13.2 9.8A5.5 5.5 0 0 1 6.2 2.8a5.5 5.5 0 1 0 7 7Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-          </svg>
-          <span class="theme-label-light">Light</span>
-          <span class="theme-label-dark">Dark</span>
+          <span class="theme-opt theme-opt-dark">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M13.2 9.8A5.5 5.5 0 0 1 6.2 2.8a5.5 5.5 0 1 0 7 7Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+            </svg>
+            <span>Dark</span>
+          </span>
+          <span class="theme-opt theme-opt-light">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M8 1.5v1.8M8 12.7v1.8M1.5 8h1.8M12.7 8h1.8M3.4 3.4l1.3 1.3M11.3 11.3l1.3 1.3M12.6 3.4l-1.3 1.3M4.7 11.3l-1.3 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            <span>Light</span>
+          </span>
         </button>
 
         <button
@@ -1097,12 +1297,14 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <h1 class="hero-title">Surveys, game milestones, and partner offers in one place.</h1>
+          <span class="hero-badge">Setup &amp; Offer Guide</span>
+
+          <h1 class="hero-title">Earn rewards on surveys, games, and partner offers.</h1>
 
           <p class="hero-description">
-            Register a free Freecash account, download the app, and pick tasks
-            that fit your time. Each offer lists its exact requirements upfront,
-            and rewards are credited once completion is verified.
+            Create a free Freecash account, install the official app, and pick
+            activities that match your schedule. Every task shows its exact
+            rules upfront before you commit any time.
           </p>
 
           <div class="hero-actions">
@@ -1112,30 +1314,88 @@
             <a class="button button-secondary" data-create-link href="#" aria-disabled="true" tabindex="-1">
               Create free account
             </a>
-            <a class="jump-link" href="#install">Install walkthrough</a>
+            <a class="video-jump" href="#install">
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M6.8 5.6v4.8L10.6 8 6.8 5.6Z" fill="currentColor"/>
+              </svg>
+              Watch walkthrough
+            </a>
           </div>
         </div>
 
-        <aside class="facts-card" aria-label="Overview summary">
-          <h2 class="facts-title">Before you start</h2>
-          <dl class="facts-list">
-            <div class="facts-row">
-              <dt>Account</dt>
-              <dd>Free sign-up on Freecash. Some optional partner promotions involve paid trials or deposits.</dd>
+        <aside class="bento-stack" aria-label="Platform overview">
+          <div class="bento-card">
+            <div class="bento-card-header">
+              <span class="bento-label">How a session works</span>
+              <span class="bento-tag">3 steps</span>
             </div>
-            <div class="facts-row">
-              <dt>Available tasks</dt>
-              <dd>Research surveys, mobile game progression milestones, and partner app sign-ups.</dd>
+            <div class="pipeline">
+              <div class="pipeline-step">
+                <span class="pipeline-num">01</span>
+                <strong>Register</strong>
+                <span>Free sign-up on Freecash</span>
+              </div>
+              <div class="pipeline-step">
+                <span class="pipeline-num">02</span>
+                <strong>Complete</strong>
+                <span>Follow offer terms &amp; timers</span>
+              </div>
+              <div class="pipeline-step">
+                <span class="pipeline-num">03</span>
+                <strong>Redeem</strong>
+                <span>Cash out verified balance</span>
+              </div>
             </div>
-            <div class="facts-row">
-              <dt>Verification</dt>
-              <dd>Rewards depend on partner tracking and completion under each offer’s listed rules.</dd>
+          </div>
+
+          <div class="bento-pair">
+            <div class="bento-card">
+              <div class="bento-card-header">
+                <span class="bento-label">Task categories</span>
+              </div>
+              <ul class="mini-list">
+                <li>
+                  <span>Surveys</span>
+                  <span class="mini-chip">Screened</span>
+                </li>
+                <li>
+                  <span>Mobile games</span>
+                  <span class="mini-chip">Milestones</span>
+                </li>
+                <li>
+                  <span>Partner trials</span>
+                  <span class="mini-chip">Terms apply</span>
+                </li>
+              </ul>
             </div>
-            <div class="facts-row">
-              <dt>Regional catalog</dt>
-              <dd>Task inventory, reward rates, and cash-out methods depend on your country.</dd>
+
+            <div class="bento-card">
+              <div class="bento-card-header">
+                <span class="bento-label">Tracking rules</span>
+              </div>
+              <ul class="check-list">
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="m3.5 8.3 2.8 2.8 6.2-6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  First-time installs only
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="m3.5 8.3 2.8 2.8 6.2-6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Disable VPN &amp; ad-blockers
+                </li>
+                <li>
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="m3.5 8.3 2.8 2.8 6.2-6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Varies by country
+                </li>
+              </ul>
             </div>
-          </dl>
+          </div>
         </aside>
       </div>
     </section>
@@ -1143,32 +1403,33 @@
     <section class="section" id="install">
       <div class="container install-layout">
         <div>
-          <h2>Install walkthrough</h2>
+          <span class="section-tag">01 / Setup</span>
+          <h2>Set up in three steps</h2>
           <p class="section-intro">
-            Follow these steps alongside the short video clip to set up the app
-            and sign in.
+            Follow the video walkthrough alongside these steps to register,
+            install the app, and sign in cleanly.
           </p>
 
           <ol class="install-steps">
             <li>
-              <span class="step-index">01</span>
+              <span class="step-badge">01</span>
               <div>
                 <strong>Create your account first</strong>
                 <span>Open the <a class="inline-link" data-create-link href="#" aria-disabled="true" tabindex="-1">account sign-up page</a> so your login credentials are ready.</span>
               </div>
             </li>
             <li>
-              <span class="step-index">02</span>
+              <span class="step-badge">02</span>
               <div>
                 <strong>Get the official app</strong>
                 <span>Open the official Freecash page from the button below to install the app for your device.</span>
               </div>
             </li>
             <li>
-              <span class="step-index">03</span>
+              <span class="step-badge">03</span>
               <div>
-                <strong>Install and sign in</strong>
-                <span>Run through the steps shown in the video, then log in to view your available offers.</span>
+                <strong>Sign in &amp; check offers</strong>
+                <span>Follow the clip to sign in and view the tasks open to your country.</span>
               </div>
             </li>
           </ol>
@@ -1184,7 +1445,18 @@
           </noscript>
         </div>
 
-        <div class="video-card">
+        <div class="media-card">
+          <div class="media-topbar">
+            <span class="media-title">
+              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <rect x="2" y="3" width="12" height="10" rx="2" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M6.7 6v4L10.2 8 6.7 6Z" fill="currentColor"/>
+              </svg>
+              Install walkthrough
+            </span>
+            <span class="media-file">install.mp4</span>
+          </div>
+
           <video
             controls
             playsinline
@@ -1194,9 +1466,10 @@
             <source src="./install.mp4" type="video/mp4">
             Your browser does not support this video.
           </video>
-          <div class="video-caption">
-            <span>Walkthrough video (<code>install.mp4</code>)</span>
-            <a class="inline-link" href="#contact">Video or link issue? Contact via GitHub</a>
+
+          <div class="media-footer">
+            <span>Short setup walkthrough</span>
+            <a class="inline-link" href="#contact">Broken link or playback issue? Report on GitHub</a>
           </div>
         </div>
       </div>
@@ -1205,40 +1478,43 @@
     <section class="section" id="how-it-works">
       <div class="container">
         <div class="section-header">
-          <h2>How it works</h2>
+          <span class="section-tag">02 / Process</span>
+          <h2>How tracking and verification work</h2>
           <p class="section-intro">
-            Every task on Freecash is run with an external survey provider, game
-            studio, or partner service. Stick to three habits so your progress
-            tracks properly.
+            Tasks on Freecash are run with external research providers, game
+            studios, and partner brands. Keep these three habits so completions
+            credit reliably.
           </p>
         </div>
 
-        <div class="process-grid">
-          <article class="process-item">
-            <span class="process-num">Step 01</span>
-            <h3>Pick an eligible offer</h3>
+        <div class="cards-grid">
+          <article class="feature-card">
+            <span class="card-num">Step 01</span>
+            <h3>Choose an eligible offer</h3>
             <p>
-              Browse the catalog shown for your country and device. Game and app
-              offers usually apply to first-time installs only.
+              Browse the catalog filtered for your country and OS. App and game
+              campaigns almost always require a first-time installation on your
+              device.
             </p>
           </article>
 
-          <article class="process-item">
-            <span class="process-num">Step 02</span>
-            <h3>Read the terms before starting</h3>
+          <article class="feature-card">
+            <span class="card-num">Step 02</span>
+            <h3>Read the milestone &amp; timer</h3>
             <p>
-              Check the target level or task, the time window to finish, and
-              whether a purchase or subscription is required.
+              Every listing states the target level or action, how many days you
+              have to finish, and whether an optional purchase or trial is
+              involved.
             </p>
           </article>
 
-          <article class="process-item">
-            <span class="process-num">Step 03</span>
-            <h3>Keep tracking intact &amp; redeem</h3>
+          <article class="feature-card">
+            <span class="card-num">Step 03</span>
+            <h3>Launch directly &amp; cash out</h3>
             <p>
-              Launch the offer directly from Freecash without VPNs or ad
-              blockers. Once verified, redeem through the payout options in your
-              region.
+              Start the offer straight from Freecash with VPNs and ad-blockers
+              off so attribution stays intact, then withdraw verified rewards in
+              your region.
             </p>
           </article>
         </div>
@@ -1248,40 +1524,76 @@
     <section class="section" id="offers">
       <div class="container">
         <div class="section-header">
+          <span class="section-tag">03 / Categories</span>
           <h2>Offer types compared</h2>
           <p class="section-intro">
-            What each category involves and what to verify before spending time
-            on an activity.
+            What each activity category involves and the fine print worth
+            checking before you start.
           </p>
         </div>
 
-        <div class="table-wrap">
-          <table class="offers-table">
-            <thead>
-              <tr>
-                <th scope="col">Category</th>
-                <th scope="col">What it involves</th>
-                <th scope="col">What to check first</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Surveys</th>
-                <td>Answering consumer or market-research questionnaires from partner networks.</td>
-                <td>Estimated completion time and demographic screening — quotas can fill before you qualify.</td>
-              </tr>
-              <tr>
-                <th scope="row">Mobile games</th>
-                <td>Installing a new mobile game and reaching specified levels or in-game milestones.</td>
-                <td>Day limits for each tier, new-user-only rules, and device OS requirements.</td>
-              </tr>
-              <tr>
-                <th scope="row">Partner offers</th>
-                <td>Registering for or trying third-party apps, financial tools, or subscription services.</td>
-                <td>Any deposit, trial fee, minimum hold period, or cancellation deadline in the fine print.</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="cards-grid">
+          <article class="feature-card">
+            <span class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <h3>Surveys</h3>
+            <p>
+              Short consumer and market-research questionnaires supplied by
+              partner survey networks.
+            </p>
+            <div class="card-check-box">
+              <div class="card-check-inner">
+                <span class="card-check-label">What to check first</span>
+                <span>Estimated duration and demographic screening — quotas can fill mid-screener.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <span class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="6" width="18" height="12" rx="4" stroke="currentColor" stroke-width="1.7"/>
+                <path d="M7.5 12h3M9 10.5v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                <circle cx="15.5" cy="11" r="1" fill="currentColor"/>
+                <circle cx="17.5" cy="13" r="1" fill="currentColor"/>
+              </svg>
+            </span>
+            <h3>Mobile games</h3>
+            <p>
+              Installing a new mobile title and reaching specific levels,
+              chapters, or multi-tier milestones.
+            </p>
+            <div class="card-check-box">
+              <div class="card-check-inner">
+                <span class="card-check-label">What to check first</span>
+                <span>Day limits per tier, new-player-only rules, and Android/iOS version requirements.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <span class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3.5 5 6.5v5.3c0 4.5 3 7.9 7 8.7 4-.8 7-4.2 7-8.7V6.5l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <path d="m9.2 12.2 2 2 3.8-3.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <h3>Partner offers</h3>
+            <p>
+              Registering for or testing third-party apps, fintech tools, or
+              promotional trial services.
+            </p>
+            <div class="card-check-box">
+              <div class="card-check-inner">
+                <span class="card-check-label">What to check first</span>
+                <span>Any deposit, paid subscription, minimum hold window, or cancellation deadline.</span>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1289,52 +1601,79 @@
     <section class="section" id="faq">
       <div class="container faq-layout">
         <div>
+          <span class="section-tag">04 / FAQ</span>
           <h2>Common questions</h2>
           <p class="section-intro">
-            Straight answers on payouts, regional availability, and support.
+            Direct answers on payouts, regional catalogs, and where to get help
+            with this page.
           </p>
         </div>
 
-        <div class="faq-list">
-          <details>
-            <summary>Is a specific reward amount guaranteed?</summary>
+        <div class="faq-stack">
+          <details class="faq-item">
+            <summary>
+              <span>Is a specific reward amount guaranteed?</span>
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="m5.5 7.8 4.5 4.5 4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
             <p>
-              No. Available tasks and reward rates vary by country and partner
-              demand, and payouts require verified completion under each offer’s
-              rules.
+              No. Available tasks and reward rates depend on your country and
+              partner demand, and payouts require verified completion under each
+              offer’s rules.
             </p>
           </details>
 
-          <details>
-            <summary>Why do offers differ depending on where I live?</summary>
+          <details class="faq-item">
+            <summary>
+              <span>Why do offers differ depending on where I live?</span>
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="m5.5 7.8 4.5 4.5 4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
             <p>
-              Advertisers and survey researchers target specific countries,
-              languages, and devices. You will only see offers currently open to
-              your region and account.
+              Survey providers and game studios set regional budgets, languages,
+              and target devices, so you only see offers currently active for
+              your location.
             </p>
           </details>
 
-          <details>
-            <summary>Should I create an account before installing the app?</summary>
+          <details class="faq-item">
+            <summary>
+              <span>Should I create an account before installing the app?</span>
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="m5.5 7.8 4.5 4.5 4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
             <p>
-              Yes — registering your account first makes signing into the app
-              immediate after installation. Use the
+              Yes — registering first makes signing into the app immediate after
+              installation. Use the
               <a class="inline-link" data-create-link href="#" aria-disabled="true" tabindex="-1">Create free account</a>
-              link at the top of the page.
+              button at the top of the page.
             </p>
           </details>
 
-          <details>
-            <summary>What cash-out options are available?</summary>
+          <details class="faq-item">
+            <summary>
+              <span>What cash-out options are supported?</span>
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="m5.5 7.8 4.5 4.5 4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
             <p>
-              Withdrawal methods, minimum thresholds, and processing times vary
+              Withdrawal methods, minimum thresholds, and processing speeds vary
               by region. Check the cashout tab inside Freecash for the options
               enabled on your account.
             </p>
           </details>
 
-          <details>
-            <summary>How do I report a broken download link or ask about this site?</summary>
+          <details class="faq-item">
+            <summary>
+              <span>How do I report a broken link or ask about this site?</span>
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="m5.5 7.8 4.5 4.5 4.5-4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
             <p>
               Open an issue on the
               <a class="inline-link" href="https://github.com/deve-pro/deve-pro.github.io/issues">deve-pro/deve-pro.github.io</a>
@@ -1348,19 +1687,26 @@
     <section class="contact-section" id="contact">
       <div class="container">
         <div class="contact-card">
-          <div class="contact-copy">
-            <h2>Contact &amp; repository</h2>
-            <p>
-              Have a question about this guide, ran into a broken link, or want
-              to suggest an edit? Reach out directly through the project
-              repository on GitHub.
-            </p>
-            <span class="repo-slug">github.com/deve-pro/deve-pro.github.io</span>
+          <div class="contact-main">
+            <span class="github-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.588 2 12.253c0 4.532 2.862 8.375 6.838 9.73.5.095.687-.221.687-.492 0-.243-.012-1.05-.012-1.91-2.782.618-3.369-1.217-3.369-1.217-.454-1.184-1.11-1.499-1.11-1.499-.908-.636.069-.623.069-.623 1.004.072 1.532 1.057 1.532 1.057.892 1.567 2.341 1.114 2.91.852.091-.664.35-1.115.636-1.371-2.22-.259-4.555-1.14-4.555-5.068 0-1.12.39-2.035 1.03-2.752-.104-.26-.447-1.302.098-2.714 0 0 .84-.276 2.75 1.051A9.38 9.38 0 0 1 12 6.844c.85.004 1.705.118 2.504.346 1.909-1.327 2.747-1.051 2.747-1.051.547 1.412.204 2.454.1 2.714.64.717 1.028 1.632 1.028 2.752 0 3.938-2.339 4.806-4.566 5.06.359.317.678.944.678 1.903 0 1.374-.012 2.482-.012 2.82 0 .273.184.592.692.491C19.14 20.624 22 16.783 22 12.253 22 6.588 17.523 2 12 2Z"/>
+              </svg>
+            </span>
+            <div class="contact-copy">
+              <h2>Contact &amp; source repository</h2>
+              <p>
+                Spotted a broken link, playback issue, or want to suggest an
+                update? Reach out directly through our public repository on
+                GitHub.
+              </p>
+              <span class="repo-slug">github.com/deve-pro/deve-pro.github.io</span>
+            </div>
           </div>
 
           <div class="contact-actions">
             <a class="button button-primary" href="https://github.com/deve-pro/deve-pro.github.io">
-              View repository
+              View on GitHub
             </a>
             <a class="button button-secondary" href="https://github.com/deve-pro/deve-pro.github.io/issues">
               Open an issue
@@ -1429,7 +1775,7 @@
       }
 
       if (themeMeta) {
-        themeMeta.setAttribute("content", isLight ? "#f6f5f0" : "#161614");
+        themeMeta.setAttribute("content", isLight ? "#f7f8fa" : "#0c0e12");
       }
 
       if (themeButton) {
