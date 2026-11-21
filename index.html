@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f5f0">
+  <meta name="theme-color" content="#161614">
   <meta
     name="description"
     content="Practical guide to getting started with Freecash: create an account, install the app, and understand how surveys, game milestones, and partner offers work."
@@ -15,9 +15,45 @@
   >
   <title>Freecash — Setup Guide &amp; App Download</title>
   <link rel="preload" href="./install.mp4" as="video" type="video/mp4">
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.dataset.theme = "light";
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) {
+          metaTheme.setAttribute("content", "#f6f5f0");
+        }
+      }
+    } catch (_) {
+      /* Storage unavailable; keep default dark theme */
+    }
+  </script>
 
   <style>
     :root {
+      color-scheme: dark;
+      --bg: #161614;
+      --surface: #1f1f1c;
+      --surface-subtle: #262622;
+      --ink: #ededeb;
+      --muted: #b0ada4;
+      --faint: #969288;
+      --border: #32312c;
+      --border-strong: #4a4841;
+      --accent: #275d4a;
+      --accent-hover: #2f6e58;
+      --on-accent: #f6f5f0;
+      --accent-text: #8db8a5;
+      --accent-text-hover: #a7ccbc;
+      --accent-wash: #212e28;
+      --menu-shadow: 0 14px 28px rgba(0, 0, 0, 0.45);
+      --max-width: 1060px;
+      --radius: 6px;
+      --radius-lg: 8px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    :root[data-theme="light"] {
       color-scheme: light;
       --bg: #f6f5f0;
       --surface: #ffffff;
@@ -29,11 +65,11 @@
       --border-strong: #b9b4a8;
       --accent: #1d4e3e;
       --accent-hover: #14382c;
+      --on-accent: #ffffff;
+      --accent-text: #1d4e3e;
+      --accent-text-hover: #14382c;
       --accent-wash: #e7efec;
-      --max-width: 1060px;
-      --radius: 6px;
-      --radius-lg: 8px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --menu-shadow: 0 12px 24px rgba(23, 23, 21, 0.08);
     }
 
     *,
@@ -90,7 +126,7 @@
       padding: 8px 14px;
       border-radius: var(--radius);
       background: var(--accent);
-      color: #ffffff;
+      color: var(--on-accent);
       font-size: 0.875rem;
       font-weight: 600;
     }
@@ -114,6 +150,10 @@
       display: block;
     }
 
+    .no-js .theme-toggle {
+      display: none;
+    }
+
     a[aria-disabled="true"] {
       pointer-events: none;
       opacity: 0.45;
@@ -124,7 +164,7 @@
     button:focus-visible,
     summary:focus-visible,
     video:focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--accent-text);
       outline-offset: 3px;
     }
 
@@ -156,14 +196,14 @@
     }
 
     .link-bar-download {
-      color: var(--accent);
+      color: var(--accent-text);
       font-weight: 600;
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
     .link-bar-download:hover {
-      color: var(--accent-hover);
+      color: var(--accent-text-hover);
     }
 
     .link-bar-cta {
@@ -176,7 +216,7 @@
       border: 1px solid var(--accent);
       border-radius: var(--radius);
       background: var(--accent);
-      color: #ffffff;
+      color: var(--on-accent);
       font-size: 0.8rem;
       font-weight: 600;
       transition: background 140ms ease, border-color 140ms ease;
@@ -192,14 +232,14 @@
       display: flex;
       min-height: 64px;
       align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
 
     .brand {
       display: inline-flex;
       align-items: baseline;
       gap: 8px;
+      margin-right: auto;
       font-size: 1.12rem;
       font-weight: 700;
       letter-spacing: -0.02em;
@@ -220,7 +260,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
     }
 
     .nav-links > a:not(.button) {
@@ -234,10 +274,62 @@
       color: var(--ink);
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      min-height: 36px;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0 11px;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 0.84rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 140ms ease, border-color 140ms ease;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--ink);
+      background: var(--surface-subtle);
+    }
+
+    .theme-toggle svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    .icon-moon,
+    .theme-label-dark {
+      display: none;
+    }
+
+    :root[data-theme="light"] .icon-sun,
+    :root[data-theme="light"] .theme-label-light {
+      display: none;
+    }
+
+    :root[data-theme="light"] .icon-moon {
+      display: block;
+    }
+
+    :root[data-theme="light"] .theme-label-dark {
+      display: inline;
+    }
+
     .menu-toggle {
       display: none;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 36px;
       align-items: center;
       justify-content: center;
       flex-direction: column;
@@ -273,7 +365,7 @@
     .button-primary {
       border-color: var(--accent);
       background: var(--accent);
-      color: #ffffff;
+      color: var(--on-accent);
     }
 
     .button-primary:hover {
@@ -299,14 +391,14 @@
     }
 
     .inline-link {
-      color: var(--accent);
+      color: var(--accent-text);
       font-weight: 600;
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
     .inline-link:hover {
-      color: var(--accent-hover);
+      color: var(--accent-text-hover);
     }
 
     /* Hero */
@@ -452,7 +544,7 @@
     }
 
     .step-index {
-      color: var(--accent);
+      color: var(--accent-text);
       font-family: var(--mono);
       font-size: 0.82rem;
       font-weight: 600;
@@ -483,7 +575,7 @@
       height: auto;
       aspect-ratio: 16 / 9;
       max-height: 520px;
-      background: #1c1c1a;
+      background: #0f0f0e;
       vertical-align: middle;
     }
 
@@ -530,7 +622,7 @@
       padding: 2px 8px;
       border-radius: 4px;
       background: var(--accent-wash);
-      color: var(--accent);
+      color: var(--accent-text);
       font-family: var(--mono);
       font-size: 0.78rem;
       font-weight: 600;
@@ -771,7 +863,7 @@
       }
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 860px) {
       html {
         scroll-padding-top: 108px;
       }
@@ -816,7 +908,7 @@
         border: 1px solid var(--border);
         border-radius: 0 0 var(--radius-lg) var(--radius-lg);
         background: var(--surface);
-        box-shadow: 0 12px 24px rgba(23, 23, 21, 0.08);
+        box-shadow: var(--menu-shadow);
       }
 
       .nav-links.is-open {
@@ -831,7 +923,9 @@
       .nav-links .button {
         margin-top: 10px;
       }
+    }
 
+    @media (max-width: 760px) {
       .offers-table,
       .offers-table thead,
       .offers-table tbody,
@@ -956,17 +1050,6 @@
         <span class="brand-tag">guide</span>
       </a>
 
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="primary-nav"
-      >
-        <span></span>
-        <span></span>
-      </button>
-
       <nav class="nav-links" id="primary-nav" aria-label="Main navigation">
         <a href="#install">Install</a>
         <a href="#how-it-works">How it works</a>
@@ -977,6 +1060,36 @@
           Get the app
         </a>
       </nav>
+
+      <div class="header-actions">
+        <button
+          class="theme-toggle"
+          type="button"
+          id="theme-toggle"
+          aria-label="Switch to light theme"
+        >
+          <svg class="icon-sun" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M8 1.5v1.8M8 12.7v1.8M1.5 8h1.8M12.7 8h1.8M3.4 3.4l1.3 1.3M11.3 11.3l1.3 1.3M12.6 3.4l-1.3 1.3M4.7 11.3l-1.3 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M13.2 9.8A5.5 5.5 0 0 1 6.2 2.8a5.5 5.5 0 1 0 7 7Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          </svg>
+          <span class="theme-label-light">Light</span>
+          <span class="theme-label-dark">Dark</span>
+        </button>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -1302,6 +1415,45 @@
 
     wireLinks("[data-app-link]", APP_URL);
     wireLinks("[data-create-link]", CREATE_URL);
+
+    const themeButton = document.querySelector("#theme-toggle");
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+    const applyThemeState = (theme) => {
+      const isLight = theme === "light";
+
+      if (isLight) {
+        root.dataset.theme = "light";
+      } else {
+        delete root.dataset.theme;
+      }
+
+      if (themeMeta) {
+        themeMeta.setAttribute("content", isLight ? "#f6f5f0" : "#161614");
+      }
+
+      if (themeButton) {
+        themeButton.setAttribute(
+          "aria-label",
+          isLight ? "Switch to dark theme" : "Switch to light theme"
+        );
+      }
+    };
+
+    applyThemeState(root.dataset.theme === "light" ? "light" : "dark");
+
+    if (themeButton) {
+      themeButton.addEventListener("click", () => {
+        const nextTheme = root.dataset.theme === "light" ? "dark" : "light";
+        applyThemeState(nextTheme);
+
+        try {
+          localStorage.setItem("theme", nextTheme);
+        } catch (_) {
+          /* Ignore storage write restrictions */
+        }
+      });
+    }
 
     const menuButton = document.querySelector(".menu-toggle");
     const navigation = document.querySelector("#primary-nav");
